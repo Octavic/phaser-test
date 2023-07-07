@@ -6,7 +6,9 @@ on:
 jobs:
   build-test-deploy:
     runs-on: ubuntu-latest
-    permissions: read-all|write-all
+    permissions:
+      contents: read|write
+      pages: read|write
     steps:
       - name: Checkout
         uses: actions/checkout@v2
