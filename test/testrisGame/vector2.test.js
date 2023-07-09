@@ -1,5 +1,5 @@
 const assert = require("assert");
-const Vector2 = require("../src/tetrisGame/vector2");
+const Vector2 = require("../../src/tetrisGame/vector2");
 
 describe("Vector2", () => {
   it("should construct properly", () => {
