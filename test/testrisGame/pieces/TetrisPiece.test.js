@@ -1,7 +1,7 @@
 const assert = require('assert')
 const { PieceDefinitions, PieceTypes } = require('../../../src/tetrisGame/pieces/PieceFactory')
 const { TetrisPiece } = require('../../../src/tetrisGame/pieces/TetrisPiece')
-const { Vector2 } = require('../../../src/tetrisGame/Vector2s')
+const { Vector2 } = require('../../../src/tetrisGame/Vector2')
 
 describe("TetrisPiece", () => {
   it("Should construct with proper data", () => {
