@@ -36,7 +36,7 @@ class TetrisGame {
   }
 
   /**
-   * Check if the given coordinate is on the board. Y can be higher than the board size Y
+   * Check if the given coordinate is on the board. Y can be higher than the board size Y in case of overflow and garbage push
    * @param {Vector2} coordinate 
    */
   isCoordinateInBounds(coordinate) {
@@ -84,6 +84,14 @@ class TetrisGame {
 
     // Reset position
     oldPiece.currentPosition = this.defaultSpawnPosition;
+  }
+  
+  /**
+   * 
+   * @param {TetrisPiece} piece 
+   */
+  isPieceLegal(piece) {
+    
   }
 }
 

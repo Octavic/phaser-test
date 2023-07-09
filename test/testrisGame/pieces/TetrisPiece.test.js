@@ -1,7 +1,7 @@
 const assert = require('assert')
-const { PieceDefinitions, PieceTypes } = require('../../src/tetrisGame/pieces/PieceFactory')
-const { TetrisPiece } = require('../../src/tetrisGame/pieces/TetrisPiece')
-const { Vector2 } = require('../../src/tetrisGame/Vector2')
+const { PieceDefinitions, PieceTypes } = require('../../../src/tetrisGame/pieces/PieceFactory')
+const { TetrisPiece } = require('../../../src/tetrisGame/pieces/TetrisPiece')
+const { Vector2 } = require('../../../src/tetrisGame/Vector2')
 
 describe("TetrisPiece", () => {
   it("Should construct with proper data", () => {
@@ -42,7 +42,6 @@ describe("TetrisPiece", () => {
     ]
 
     for (let i = 0; i < 4; i++) {
-      console.log(`${i}: `)
       assert.equal(piece.pieces[i].x, expectedPieces[i].x);
       assert.equal(piece.pieces[i].y, expectedPieces[i].y);
     }
@@ -75,7 +74,6 @@ describe("TetrisPiece", () => {
     ]
 
     for (let i = 0; i < 4; i++) {
-      console.log(`${i}: `)
       assert.equal(piece.pieces[i].x, expectedPieces[i].x);
       assert.equal(piece.pieces[i].y, expectedPieces[i].y);
     }
