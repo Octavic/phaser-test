@@ -1,6 +1,6 @@
 const { PieceColors, PieceFactory } = require("./pieces/PieceFactory");
 const { TetrisPiece } = require("./pieces/TetrisPiece");
-const { Vector2 } = require("./Vector2");
+const { Vector2 } = require("./Vector2s");
 
 class TetrisGame {
   //#region Board Data

@@ -1,4 +1,4 @@
-const { Vector2 } = require("../Vector2");
+const { Vector2 } = require("../Vector2s");
 
 class TetrisPiece {
   /**
