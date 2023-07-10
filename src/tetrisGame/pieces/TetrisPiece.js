@@ -43,6 +43,23 @@ class TetrisPiece {
     this.rotationOrigin = rotationOrigin;
   }
 
+  /**
+   * @param {TetrisPiece} other 
+   * @returns {TetrisPiece}
+   */
+  static clone(other) {
+    return new TetrisPiece(
+      other.pieceType,
+      other.pieceColor,
+      Vector2.clone(other.currentPosition),
+      other.pieces.map(Vector2.clone),
+      other.rotationOrigin && Vector2.clone(other.rotationOrigin),
+    )
+  }
+
+  /**
+   * @param {boolean} isClockwise 
+   */
   rotatePiece(isClockwise) {
     // No origin defined, cannot rotate (square piece)
     if (!this.rotationOrigin) {

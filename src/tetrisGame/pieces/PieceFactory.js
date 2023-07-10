@@ -14,13 +14,13 @@ const PieceTypes = {
 const PieceTypesKeys = Object.keys(PieceTypes);
 
 const PieceColors = {
-  Yellow: "#efff40",
-  Teal: "#45beff",
-  Purple: "#d445ff",
-  Red: "#ff524d",
-  Green: "#24ff65",
-  Orange: "#ff781f",
-  Blue: "#461cff"
+  Yellow: 0xfffb0d,
+  Teal: 0x45beff,
+  Purple: 0xd445ff,
+  Red: 0xff524d,
+  Green: 0x0cf523,
+  Orange: 0xff781f,
+  Blue: 0x461cff
 }
 
 // The piece definitions.
@@ -33,18 +33,18 @@ const PieceDefinitions = {
     /**
      *    0  1  2  3  4
      *   +--+--+--+--+--+
-     * 4 |  |  |  |  |  |
+     * 4 |  |██|██|  |  |
      * 3 |  |██|██|  |  |
-     * 2 |  |██|██|  |  |
+     * 2 |  |  |  |  |  |
      * 1 |  |  |  |  |  |
      * 0 |  |  |  |  |  |
      *   +--+--+--+--+--+
      */
     pieces: [
+      new Vector2(1, 4),
+      new Vector2(2, 4),
       new Vector2(1, 3),
       new Vector2(2, 3),
-      new Vector2(1, 2),
-      new Vector2(2, 2),
     ],
     rotationOrigin: null
   },
@@ -54,18 +54,18 @@ const PieceDefinitions = {
     /**
      *    0  1  2  3  4   
      *   +--+--+--+--+--+ 
-     * 4 |  |  |██|  |  | 
-     * 3 |  |  |██|  |  | 
-     * 2 |  |  |██|  |  | 
-     * 1 |  |  |██|  |  | 
+     * 4 |██|██|██|██|  | 
+     * 3 |  |  |  |  |  | 
+     * 2 |  |  |  |  |  | 
+     * 1 |  |  |  |  |  | 
      * 0 |  |  |  |  |  | 
      *   +--+--+--+--+--+ 
      */
     pieces: [
-      new Vector2(2, 4),
-      new Vector2(2, 3),
-      new Vector2(2, 2),
-      new Vector2(2, 1),
+      new Vector2(0, 4),
+      new Vector2(0, 3),
+      new Vector2(0, 2),
+      new Vector2(0, 1),
     ],
     rotationOrigin: new Vector2(2, 3)
   },
@@ -181,7 +181,7 @@ const PieceDefinitions = {
  * Class generating new pieces
  */
 class PieceFactory {
-  static generatePiece(pieceType, spawnPosition) {
+  generatePiece(pieceType, spawnPosition) {
     const definition = PieceDefinitions[pieceType];
     const result = new TetrisPiece(
       pieceType,
@@ -193,7 +193,7 @@ class PieceFactory {
     return result;
   }
 
-  static generateRandomPiece(spawnPosition) {
+  generateRandomPiece(spawnPosition) {
     return this.generatePiece(PieceTypesKeys[Math.floor(Math.random() * PieceTypesKeys.length)], spawnPosition);
   }
 }

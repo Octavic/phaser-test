@@ -2,6 +2,7 @@ const assert = require('assert')
 const { PieceDefinitions, PieceTypes } = require('../../../src/tetrisGame/pieces/PieceFactory')
 const { TetrisPiece } = require('../../../src/tetrisGame/pieces/TetrisPiece')
 const { Vector2 } = require('../../../src/tetrisGame/Vector2')
+const assertVector2 = require('../assertVector2')
 
 describe("TetrisPiece", () => {
   it("Should construct with proper data", () => {
@@ -13,6 +14,21 @@ describe("TetrisPiece", () => {
     assert.equal(piece.pieceColor, definition.color);
     assert.equal(piece.rotationOrigin.x, definition.rotationOrigin.x);
     assert.equal(piece.rotationOrigin.y, definition.rotationOrigin.y);
+  })
+
+  it("Should create a clone with clone()", ()=>{
+    const definition = PieceDefinitions[PieceTypes.T];
+    const spawnPosition = new Vector2(3, 19);
+    const original = new TetrisPiece(PieceTypes.T, definition.color, spawnPosition, definition.pieces, definition.rotationOrigin);
+    const clone = TetrisPiece.clone(original);
+
+    assert.equal(clone.pieceType, original.pieceType);
+    assert.equal(clone.pieceColor, original.pieceColor);
+    assertVector2.equal(clone.currentPosition, original.currentPosition);
+
+    // Changing original should not change the clone
+    original.currentPosition.y = 25;
+    assertVector2.equal(clone.currentPosition, new Vector2(3, 19));
   })
 
   it("Should rotate clockwise properly", () => {
@@ -136,7 +152,6 @@ describe("TetrisPiece", () => {
      ];
  
      for (let i = 0; i < 4; i++) {
-       console.log(`${i}: `)
        assert.equal(occupied[i].x, expectedOccupied[i].x);
        assert.equal(occupied[i].y, expectedOccupied[i].y);
      }
