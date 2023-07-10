@@ -152,7 +152,6 @@ describe("TetrisPiece", () => {
      ];
  
      for (let i = 0; i < 4; i++) {
-       console.log(`${i}: `)
        assert.equal(occupied[i].x, expectedOccupied[i].x);
        assert.equal(occupied[i].y, expectedOccupied[i].y);
      }

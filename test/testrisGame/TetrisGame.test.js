@@ -9,10 +9,12 @@ const assertVector2 = require("./assertVector2");
 describe("TetrisGame", () => {
   const pieceFactory = new PieceFactory();
 
-  it("Should construct with right x and y", () => {
-    const game = new TetrisGame(10, 20);
-    assert.equal(game.boardSizeX, 10);
-    assert.equal(game.boardSizeY, 20);
+  describe("Constructor", () => {
+    it("Should construct with right x and y", () => {
+      const game = new TetrisGame(10, 20);
+      assert.equal(game.boardSizeX, 10);
+      assert.equal(game.boardSizeY, 20);
+    })
   })
 
   describe("isCoordinateInBounds", () => {
@@ -258,12 +260,13 @@ describe("TetrisGame", () => {
       const game = new TetrisGame(10, 20);
       const spawnPosition = new Vector2(0, 0);
       game.activePiece = pieceFactory.generatePiece(PieceTypes.L, spawnPosition);
+      game.recalculatePiecePhantom();
+      const expectedColor = game.activePiece.pieceColor;
 
-      // Should not be allowed
-      assert.equal(game.tryHardDrop(true), true);
+      // Should be allowed
+      assert.equal(game.tryHardDrop(), true);
 
-      // Should not see the piece falling
-      const occupied = game.activePiece.getOccupiedCoordinates();
+      // Should see the piece falling
       const expectedOccupied = [
         new Vector2(3, 1),
         new Vector2(1, 0),
@@ -271,8 +274,10 @@ describe("TetrisGame", () => {
         new Vector2(3, 0),
       ]
 
-      for (let i = 0; i < 4; i++) {
-        assertVector2.equal(occupied[i], expectedOccupied[i])
+      console.log(game.boardState)
+
+      for (let expected of expectedOccupied) {
+        assert.equal(game.boardState[expected.y][expected.x], expectedColor);
       }
     })
 

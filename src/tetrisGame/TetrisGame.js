@@ -120,7 +120,7 @@ class TetrisGame {
         return false;
       }
 
-      if (this.boardState[coordinate.y][coordinate.x]) {
+      if (coordinate.y < this.boardSizeY && this.boardState[coordinate.y][coordinate.x]) {
         return false;
       }
     }
@@ -214,7 +214,9 @@ class TetrisGame {
         continue;
       }
 
-      console.log(`Cleared ${rowsCleared} row(s)`)
+      if (rowsCleared) {
+        console.log(`Cleared ${rowsCleared} row(s)`)
+      }
 
       // Row is not filled, check if shifting is necessary
       if (distanceToDrop > 0) {

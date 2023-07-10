@@ -4,7 +4,7 @@ import { TetrisGame } from './tetrisGame/TetrisGame';
 import { Vector2 } from './tetrisGame/Vector2';
 
 const defaultGridColor = 0xdedede;
-const backgroundColor = 0x3a4370;
+const backgroundColor = 0x141936;
 
 // Game settings
 const gameBoardSizeX = 10;
@@ -102,7 +102,7 @@ class MyGame extends Phaser.Scene {
         for (let coordinate of this.tetrisGame.activePiecePhantom.getOccupiedCoordinates()) {
             const color = this.tetrisGame.activePiecePhantom.pieceColor;
             const { posX, posY } = getRectangleCoordinate(coordinate.x, coordinate.y)
-            this.add.rectangle(posX, posY, gridSize, gridSize, color, 0.6)
+            this.add.rectangle(posX, posY, gridSize, gridSize, color, 0.5)
         }
 
         // Drop pieces
