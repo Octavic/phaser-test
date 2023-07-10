@@ -20,6 +20,14 @@ class Vector2 {
    * @param {Vector2} other 
    * @returns {Vector2}
    */
+  static clone(other) {
+    return new Vector2(other.x, other.y)
+  }
+
+  /**
+   * @param {Vector2} other 
+   * @returns {Vector2}
+   */
   addVector2(other) {
     return new Vector2(this.x + other.x, this.y + other.y);
   }

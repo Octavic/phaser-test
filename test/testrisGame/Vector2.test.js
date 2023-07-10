@@ -1,5 +1,6 @@
 const assert = require("assert");
 const { Vector2 } = require("../../src/tetrisGame/Vector2");
+const assertVector2 = require("./assertVector2");
 
 describe("Vector2", () => {
 
@@ -102,6 +103,18 @@ describe("Vector2", () => {
 
       assert.equal(result.x, 1);
       assert.equal(result.y, 1);
+    })
+  })
+
+  describe("Clone", () => {
+    it("Should clone the vector", () => {
+      const original = new Vector2(5, 5);
+      const clone = Vector2.clone(original);
+
+      assertVector2.equal(clone, original);
+
+      original.x = 7;
+      assert.equal(clone.x, 5);
     })
   })
 })

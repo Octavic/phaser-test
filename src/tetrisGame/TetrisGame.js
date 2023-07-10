@@ -62,8 +62,6 @@ class TetrisGame {
   /** @type {number} */
   bagSize;
 
-
-  //#endregion
   onCommitPiece() {
     this.isHoldingLocked = false;
     this.bagPieces.push(PieceFactory.generateRandomPiece());
@@ -76,7 +74,7 @@ class TetrisGame {
 
     // Lock out of switching holding until the player commits placing this piece
     this.isHoldingLocked = true;
-    
+
     // Swap
     const oldPiece = this.holdingPiece;
     this.holdingPiece = this.activePiece;
@@ -85,14 +83,71 @@ class TetrisGame {
     // Reset position
     oldPiece.currentPosition = this.defaultSpawnPosition;
   }
-  
+
   /**
-   * 
+   * Check if the piece is occupying all open spaces
    * @param {TetrisPiece} piece 
    */
   isPieceLegal(piece) {
-    
+    for (var coordinate of piece.getOccupiedCoordinates()) {
+      if (!this.isCoordinateInBounds(coordinate)) {
+        return false;
+      }
+
+      if (this.boardState[coordinate.y][coordinate.x]) {
+        return false;
+      }
+    }
+
+    return true;
   }
+
+  // Try to lower the current active piece
+  tryLowerActivePiece() {
+    const newPiece = TetrisPiece.clone(this.activePiece);
+    newPiece.currentPosition.y--;
+
+    if (this.isPieceLegal(newPiece)) {
+      this.activePiece = newPiece;
+      return true;
+    }
+    return false;
+  }
+
+  /**
+   * 
+   * @param {boolean} isClockwise 
+   * @return {boolean}
+   */
+  tryRotatePiece(isClockwise) {
+    const newPiece = TetrisPiece.clone(this.activePiece);
+    newPiece.rotatePiece(isClockwise);
+
+    // TODO:
+    // Add wiggle room here so the piece may pop up or deeper in for T-spin triples
+
+    if (this.isPieceLegal(newPiece)) {
+      this.activePiece = newPiece;
+      return true;
+    }
+    return false;
+  }
+  //#endregion
+
+  //#region Game Life Cycle
+  /** @type {number} */
+  msTimeUntilLower;
+
+  /** @type {number} */
+  msTimeUntilForceSettle;
+  
+  /** @type {number} */
+  msTimeUntilSettle;
+
+  update(msTimePassed) {
+
+  }
+  //#endregion
 }
 
 module.exports = {
