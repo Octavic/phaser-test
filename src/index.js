@@ -11,20 +11,20 @@ const gameBoardSizeX = 10;
 const gameBoardSizeY = 20;
 const pieceDropInterval = 500;
 
-// Main Grid sizing
-const gridSize = 20;
-const gridSpacing = 3;
-const gridStartX = 200;
-const gridStartY = 50;
-
 // Holding piece sizing
-const holdingPieceDisplayPosX = 100;
+const holdingPieceDisplayPosX = 210;
 const holdingPieceDisplayPosY = 60;
 const holdingPieceDisplaySize = 15;
 const holdingPieceDisplaySpacing = 2;
 
+// Main Grid sizing
+const gridSize = 23;
+const gridSpacing = 3;
+const gridStartX = 300;
+const gridStartY = 10;
+
 // Piece bag sizing
-const pieceBagDisplayPosX = 450;
+const pieceBagDisplayPosX = 560;
 const pieceBagDisplayPosY = 60;
 const pieceBagDisplaySpacing = 65;
 const pieceBagDisplayGridSize = 15;
@@ -79,6 +79,11 @@ class MyGame extends Phaser.Scene {
                 pieceBagDisplayGridSpacing
             ))
         }
+
+        // Add instructions
+        this.add.text(150, 550, "Movement: A/D      Rotate: J/K      Hold: L", {
+            fontSize: "20px"
+        })
     }
 
     update(time, delta) {
