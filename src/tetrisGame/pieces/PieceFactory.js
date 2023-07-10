@@ -63,9 +63,9 @@ const PieceDefinitions = {
      */
     pieces: [
       new Vector2(0, 4),
-      new Vector2(0, 3),
-      new Vector2(0, 2),
-      new Vector2(0, 1),
+      new Vector2(1, 4),
+      new Vector2(2, 4),
+      new Vector2(3, 4),
     ],
     rotationOrigin: new Vector2(2, 3)
   },
