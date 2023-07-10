@@ -24,6 +24,10 @@ class Vector2 {
     return new Vector2(other.x, other.y)
   }
 
+  equalsVector2(other) {
+    return this.x === other.x && this.y === other.y;
+  }
+
   /**
    * @param {Vector2} other 
    * @returns {Vector2}

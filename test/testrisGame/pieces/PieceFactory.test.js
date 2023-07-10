@@ -4,6 +4,8 @@ const { Vector2 } = require("../../../src/tetrisGame/Vector2");
 const assertVector2 = require("../assertVector2");
 
 describe("PieceFactory", () => {
+  const pieceFactory = new PieceFactory();
+
   it("Should generate the correct piece", () => {
     /**
      *    5  6  7  8  9   
@@ -16,7 +18,7 @@ describe("PieceFactory", () => {
      *   +--+--+--+--+--+ 
      */
     const spawnPosition = new Vector2(5, 5);
-    const result = PieceFactory.generatePiece(PieceTypes.S, spawnPosition);
+    const result = pieceFactory.generatePiece(PieceTypes.S, spawnPosition);
 
     assert.equal(result.pieceType, PieceTypes.S);
     assertVector2.equal(result.currentPosition, spawnPosition);
@@ -37,9 +39,9 @@ describe("PieceFactory", () => {
   it("Should generate a random piece", () => {
     // Generate 100 pieces. Should not all be the same types
     const spawnPosition = new Vector2(5, 5);
-    const randomPieceType = PieceFactory.generateRandomPiece(spawnPosition).pieceType;
+    const randomPieceType = pieceFactory.generateRandomPiece(spawnPosition).pieceType;
     for (let i = 0; i < 100; i++) {
-      if (PieceFactory.generateRandomPiece(spawnPosition).pieceType != randomPieceType) {
+      if (pieceFactory.generateRandomPiece(spawnPosition).pieceType != randomPieceType) {
         return;
       }
     }
